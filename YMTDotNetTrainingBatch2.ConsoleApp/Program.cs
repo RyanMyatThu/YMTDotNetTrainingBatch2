@@ -6,5 +6,4 @@ using YMTDotNetTrainingBatch2.ConsoleApp;
 
 
 AdoDotNetExample adoDotNet = new AdoDotNetExample();
-// adoDotNet.Read();
 adoDotNet.Create();
