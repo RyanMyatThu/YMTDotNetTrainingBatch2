@@ -5,5 +5,5 @@ using System.IO.IsolatedStorage;
 using YMTDotNetTrainingBatch2.ConsoleApp;
 
 
-AdoDotNetExample adoDotNet = new AdoDotNetExample();
+AdoDotnetExample adoDotNet = new AdoDotnetExample();
 adoDotNet.Create();
