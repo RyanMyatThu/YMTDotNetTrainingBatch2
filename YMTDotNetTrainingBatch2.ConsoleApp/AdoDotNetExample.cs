@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace YMTDotNetTrainingBatch2.ConsoleApp
 {
-    public class AdoDotNetExample
+    public class AdoDotnetExample
     {
         SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
@@ -44,9 +44,9 @@ namespace YMTDotNetTrainingBatch2.ConsoleApp
         public void Create()
         {
             Console.WriteLine("Enter Blog Title: ");
-            string title = Console.ReadLine() + "";
+            string title = Console.ReadLine()!;
             Console.WriteLine("Enter Blog Author: ");
-            string author = Console.ReadLine() + "";
+            string author = Console.ReadLine()!;
 
             string query = @"INSERT INTO [dbo].[Tbl_Blogs]
            ([BlogTitle]
@@ -68,11 +68,11 @@ namespace YMTDotNetTrainingBatch2.ConsoleApp
         public void Update()
         {
             Console.WriteLine("Enter Blog Id to Update: ");
-            string blogId = Console.ReadLine() + "";
+            string blogId = Console.ReadLine()!;
             Console.WriteLine("Enter New Blog Title: ");
-            string title = Console.ReadLine() + "";
+            string title = Console.ReadLine()!;
             Console.WriteLine("Enter New Blog Author: ");
-            string author = Console.ReadLine() + "";
+            string author = Console.ReadLine()!;
 
             string query = @"UPDATE [dbo].[Tbl_Blogs]
                             SET [BlogTitle] = @newTitle
@@ -95,7 +95,7 @@ namespace YMTDotNetTrainingBatch2.ConsoleApp
         public void Delete()
         {
             Console.WriteLine("Enter Blog Id to Delete: ");
-            string blogId = Console.ReadLine() + "";
+            string blogId = Console.ReadLine()!;
 
             string query = @"DELETE FROM [dbo].[Tbl_Blogs]
                              WHERE BlogId = @blogId";

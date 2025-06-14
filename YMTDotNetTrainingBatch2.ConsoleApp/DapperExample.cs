@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,23 +20,52 @@ namespace YMTDotNetTrainingBatch2.ConsoleApp
             Password = "sasa@123"
 
         };
-        void Read()
+       public void Read()
         {
             using (IDbConnection db = new SqlConnection(_stringBuilder.ConnectionString))
             {
-
+                db.Open();
+                List<BlogDTO> items = db.Query<BlogDTO>("SELECT * FROM Tbl_Blogs").ToList();
+                foreach (BlogDTO item in items)
+                {
+                    Console.WriteLine("=> " + item.blogId);
+                    Console.WriteLine("=> " + item.blogTitle);
+                    Console.WriteLine("=> " + item.blogAuthor);
+                }
             }
             ;
         }
-        void Edit()
+       public void Edit()
+        {
+        FirstPage: 
+            Console.WriteLine("Enter Blog Id : ");
+            bool isInt = int.TryParse(Console.ReadLine(), out int blogId);
+            if (!isInt)
+            {
+                Console.WriteLine("Invalid Blog Id. Please enter a valid integer.");
+                goto FirstPage;
+            }
+            using(IDbConnection db = new SqlConnection(_stringBuilder.ConnectionString))
+            {
+                db.Open();
+                BlogDTO? item = db.QueryFirstOrDefault<BlogDTO>("SELECT * FROM Tbl_Blogs WHERE BlogId = @blogId", new { blogId });
+                if (item == null)
+                {
+
+                    Console.WriteLine("No record found with the given Blog Id.");
+                    return;
+                }
+
+                Console.WriteLine("=> " + item.blogId);
+                Console.WriteLine("=> " + item.blogTitle);
+                Console.WriteLine("=> " + item.blogAuthor);
+            }
+        }
+       public void Update()
         {
 
         }
-        void Update()
-        {
-
-        }
-        void Create()
+       public void Create()
         {
 
         }
