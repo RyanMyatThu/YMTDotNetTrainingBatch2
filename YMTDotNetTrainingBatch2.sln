@@ -5,9 +5,9 @@ VisualStudioVersion = 17.14.36127.28
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.ConsoleApp", "YMTDotNetTrainingBatch2.ConsoleApp\YMTDotNetTrainingBatch2.ConsoleApp.csproj", "{84BCEDAE-5D42-4CB6-988C-D52A72A0AF3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.Database", "Database\YMTDotNetTrainingBatch2.Database.csproj", "{2C7FA460-34E6-44F9-9F2C-92CA8598D016}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.MiniPOSConsoleApp", "YMTDotNetTrainingBatch2.MiniPOSConsoleApp\YMTDotNetTrainingBatch2.MiniPOSConsoleApp.csproj", "{E276A09C-8110-4170-9C10-39DCE994B23F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.Database", "YMTDotNetTrainingBatch2.Database\YMTDotNetTrainingBatch2.Database.csproj", "{2577F27B-9270-4ECE-8032-41726E6E3AB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{84BCEDAE-5D42-4CB6-988C-D52A72A0AF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BCEDAE-5D42-4CB6-988C-D52A72A0AF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BCEDAE-5D42-4CB6-988C-D52A72A0AF3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C7FA460-34E6-44F9-9F2C-92CA8598D016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C7FA460-34E6-44F9-9F2C-92CA8598D016}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C7FA460-34E6-44F9-9F2C-92CA8598D016}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C7FA460-34E6-44F9-9F2C-92CA8598D016}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E276A09C-8110-4170-9C10-39DCE994B23F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E276A09C-8110-4170-9C10-39DCE994B23F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E276A09C-8110-4170-9C10-39DCE994B23F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E276A09C-8110-4170-9C10-39DCE994B23F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2577F27B-9270-4ECE-8032-41726E6E3AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2577F27B-9270-4ECE-8032-41726E6E3AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2577F27B-9270-4ECE-8032-41726E6E3AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2577F27B-9270-4ECE-8032-41726E6E3AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

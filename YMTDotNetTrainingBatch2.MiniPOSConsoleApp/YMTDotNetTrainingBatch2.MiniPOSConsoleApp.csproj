@@ -21,6 +21,6 @@
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\Database\YMTDotNetTrainingBatch2.Database.csproj" />
+	  <ProjectReference Include="..\YMTDotNetTrainingBatch2.Database\YMTDotNetTrainingBatch2.Database.csproj" />
 	</ItemGroup>
 </Project>
