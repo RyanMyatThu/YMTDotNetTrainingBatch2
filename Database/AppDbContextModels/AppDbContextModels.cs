@@ -54,6 +54,8 @@ public partial class AppDbContextModels : DbContext
 
             entity.ToTable("Tbl_SalesSummary");
 
+            entity.Property(e => e.Date).HasColumnType("datetime");
+            entity.Property(e => e.TotalAmount).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.VoucherId)
                 .HasMaxLength(50)
                 .IsUnicode(false);

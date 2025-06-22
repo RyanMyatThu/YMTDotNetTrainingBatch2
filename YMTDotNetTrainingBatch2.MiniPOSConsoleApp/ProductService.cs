@@ -59,13 +59,12 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 goto EnterId;
             }
             AppDbContext db = new AppDbContext();
-            TblProduct? product = db.TblProducts.Find(id);
+            TblProduct? product = db.TblProducts.FirstOrDefault(prod => prod.ProductId == id);
             if(product == null || product.DeleteFlag == true)
             {
                 Console.WriteLine("Product doesn't exist\n");
                 return;
             }
-            Console.WriteLine("\nProduct Found\n");
 
             printTableData(product);
 
@@ -137,6 +136,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             return item != null;
         }
 
+        //Print table data for 1 row
         private void printTableData(TblProduct product)
         {
             
@@ -147,7 +147,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine("{0,-18} {1,-18} {2,-18}", product.ProductId, product.ProductName, product.Price);
                 Console.WriteLine();
         }
-
+        //Print table data for a list of rows
         private void printTableData(List<TblProduct> productList)
         {
             Console.WriteLine("{0,-18} {1,-18} {2,-18}",
@@ -160,7 +160,6 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             );
             Console.WriteLine(new string('-', 53));
             Console.WriteLine();
-
         }
     }
 }

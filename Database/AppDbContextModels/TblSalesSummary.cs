@@ -7,9 +7,9 @@ public partial class TblSalesSummary
 {
     public int SaleId { get; set; }
 
-    public DateOnly Date { get; set; }
+    public DateTime Date { get; set; }
 
     public string VoucherId { get; set; } = null!;
 
-    public double TotalAmount { get; set; }
+    public decimal TotalAmount { get; set; }
 }
