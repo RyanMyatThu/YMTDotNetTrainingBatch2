@@ -11,7 +11,7 @@ public partial class TblSalesDetail
 
     public int ProductId { get; set; }
 
-    public double Quantity { get; set; }
+    public decimal Quantity { get; set; }
 
-    public double Price { get; set; }
+    public decimal Price { get; set; }
 }

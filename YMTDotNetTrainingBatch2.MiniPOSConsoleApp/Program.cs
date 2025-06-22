@@ -4,14 +4,14 @@ using YMTDotNetTrainingBatch2.MiniPOSConsoleApp;
 
 //Testing Product Services
 
-/*
+
 ProductService ps = new ProductService();
 ps.Create();
 ps.Read();
 ps.Edit();
 ps.Update();
 ps.Delete();
-*/
+
 
 //Testing SalesDetailService
 
@@ -25,3 +25,8 @@ ss.Edit();
 
 //Testing SalesService
 
+
+SalesDetailService sds = new SalesDetailService();
+sds.Create();
+sds.Read();
+sds.Edit(); 

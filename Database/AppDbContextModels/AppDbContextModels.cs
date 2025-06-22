@@ -46,6 +46,8 @@ public partial class AppDbContextModels : DbContext
             entity.ToTable("Tbl_SalesDetails");
 
             entity.Property(e => e.SaleDetailId).HasColumnName("SaleDetail_Id");
+            entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.Quantity).HasColumnType("decimal(10, 3)");
         });
 
         modelBuilder.Entity<TblSalesSummary>(entity =>
