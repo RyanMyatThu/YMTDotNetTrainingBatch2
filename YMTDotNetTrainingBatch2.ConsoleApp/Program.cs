@@ -5,8 +5,6 @@ using System.Data;
 using System.IO.IsolatedStorage;
 using YMTDotNetTrainingBatch2.ConsoleApp;
 
-//EfCoreExample example = new EfCoreExample();
-//example.Delete();
 
 // Testing LINQ 
 
