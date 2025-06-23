@@ -14,7 +14,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
     {
         public void Create()
         {
-            Console.WriteLine("Creating a new Product");
+            Console.WriteLine("\nCreating a new Product");
             Console.WriteLine("-----------------------");
             Console.Write("\nEnter a product name : ");
             string productName = Console.ReadLine()!;
@@ -43,7 +43,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
 
         public void Read()
         {
-            Console.WriteLine("Obtaining Product Table From DB");
+            Console.WriteLine("\nObtaining Product Table From DB");
             Console.WriteLine("-------------------------------\n");
 
             AppDbContext db = new AppDbContext();
@@ -54,7 +54,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
         public void Edit()
         {
         EnterId:
-            Console.Write("Enter Product Id To View : ");
+            Console.Write("\nEnter Product Id To View : ");
             bool isInt = int.TryParse(Console.ReadLine(), out int id);
             if (!isInt)
             {
@@ -76,7 +76,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
         public void Update()
         {
         EnterId:
-            Console.Write("Enter Product Id To Update : ");
+            Console.Write("\nEnter Product Id To Update : ");
             bool isInt = int.TryParse(Console.ReadLine(), out int id);
             if (!isInt)
             {
@@ -111,7 +111,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
         public void Delete()
         {
         EnterId:
-            Console.Write("Enter Product Id To Delete : ");
+            Console.Write("\nEnter Product Id To Delete : ");
             bool isInt = int.TryParse(Console.ReadLine(), out int id);
             if (!isInt)
             {
@@ -129,6 +129,62 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             product.DeleteFlag = true;
             int res = db.SaveChanges();
             Console.WriteLine(res > 0 ? "Product Deleted Successfully" : "Failed to Delete Product");
+
+        }
+
+        public void Execute()
+        {
+            Menu:
+            Console.WriteLine("\nThis Is Product Menu");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("\n1. Add a new product");
+            Console.WriteLine("2. List all products");
+            Console.WriteLine("3. View a product detail");
+            Console.WriteLine("4. Update a product");
+            Console.WriteLine("5. Delete a product");
+            Console.WriteLine("6. Exit");
+            Console.WriteLine("--------------------------------");
+
+            Console.Write("\nChoose menu : ");
+            bool isInt = int.TryParse(Console.ReadLine(), out int no);
+            if (!isInt)
+            {
+                Console.WriteLine("Invalid input. Please choose a number between 1 and 6");
+                goto Menu;
+            }
+            EnumProdMenu menu = (EnumProdMenu)no;
+
+            switch (menu)
+            {                   
+                case EnumProdMenu.NewProd:
+                    Create();
+                    break;
+                case EnumProdMenu.ListProd:
+                    Read();
+                    break;
+                case EnumProdMenu.EditProd:
+                    Edit();
+                    break;
+                case EnumProdMenu.UpdateProd:
+                    Update();
+                    break;
+                case EnumProdMenu.DeleteProd:
+                    Delete();
+                    break;
+                case EnumProdMenu.Exit:
+                    goto End;
+                case EnumProdMenu.None:
+                default:
+                    Console.WriteLine("Invalid input. Please choose a number between 1 and 6");
+                    goto Menu;
+            }
+
+            Console.WriteLine("--------------------------------");
+            goto Menu;
+
+
+        End:
+            Console.WriteLine("\nExiting Product Menu");
 
         }
 
@@ -164,5 +220,18 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             Console.WriteLine(new string('-', 53));
             Console.WriteLine();
         }
+
+        public enum EnumProdMenu
+        {
+            None,
+            NewProd,
+            ListProd,
+            EditProd,
+            UpdateProd,
+            DeleteProd,
+            Exit
+        }
+
+
     }
 }
