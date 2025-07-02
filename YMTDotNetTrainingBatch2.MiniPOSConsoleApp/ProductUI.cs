@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using YMTDotNetTrainingBatch2.Database.AppDbContextModels;
-using AppDbContext = YMTDotNetTrainingBatch2.Database.AppDbContextModels.AppDbContextModels;
-
-
+using YMTDotNetTrainingBatch2.Domain.Features;
+using YMTDotNetTrainingBatch2.Domain.Features.ProductService;
 namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
+
+    //Note have to change ProdService after updating other services!!! ***
 {
-    public class ProductService
+    public class ProductUI
     {
+        public void Read()
+        {
+            Console.WriteLine("\nObtaining Product Table From DB");
+            Console.WriteLine("-------------------------------\n");
+            ProductService productService = new ProductService();
+            List<TblProduct> products = productService.GetProducts();
+            printTableData(products);
+        }
+
         public void Create()
         {
             Console.WriteLine("\nCreating a new Product");
@@ -20,35 +29,16 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             string productName = Console.ReadLine()!;
         EnterPrice:
             Console.Write("\nEnter the price for the product : ");
-            bool isDec = decimal.TryParse(Console.ReadLine(), out decimal price);
-            if (!isDec)
+            bool isDecimal = decimal.TryParse(Console.ReadLine(), out decimal price);
+            if (!isDecimal)
             {
                 Console.WriteLine("Invalid input. Please enter a decimal value");
                 goto EnterPrice;
             };
-            TblProduct product = new TblProduct()
-            {
-                ProductName = productName,
-                Price = price,
-                DeleteFlag = false
-            };
-            AppDbContext db = new AppDbContext();
-            db.Add(product);
-            int res = db.SaveChanges();
-            Console.WriteLine(res > 0 ? "\nNew Product Created Successfully!" : "\nFailed To Create A New Product!");
-            Console.WriteLine("\n");
 
-
-        }
-
-        public void Read()
-        {
-            Console.WriteLine("\nObtaining Product Table From DB");
-            Console.WriteLine("-------------------------------\n");
-
-            AppDbContext db = new AppDbContext();
-            List<TblProduct> products = db.TblProducts.Where(x => x.DeleteFlag == false).ToList();
-            printTableData(products);
+            ProductService productService = new ProductService();
+            int result = productService.CreateProduct(productName, price);
+            Console.WriteLine(result > 0 ? "Successfully added new product" : "Failed to add new product");
         }
 
         public void Edit()
@@ -61,16 +51,14 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine("Invalid Id. Please Enter An Integer Value.");
                 goto EnterId;
             }
-            AppDbContext db = new AppDbContext();
-            TblProduct? product = db.TblProducts.FirstOrDefault(prod => prod.ProductId == id);
-            if(product == null || product.DeleteFlag == true)
+            ProductService productService = new ProductService();
+            TblProduct? product = productService.FindProduct(id);
+            if(product == null)
             {
-                Console.WriteLine("Product doesn't exist\n");
-                return;
+                Console.WriteLine($"Product with id : {id} doesn't exist");
+                goto EnterId;
             }
-
             printTableData(product);
-
         }
 
         public void Update()
@@ -83,15 +71,15 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine("Invalid Id. Please Enter An Integer Value.");
                 goto EnterId;
             }
-            if(!isExists(id))
-            {
-                Console.WriteLine("Product doesn't exist\n");
+            ProductService productService = new ProductService();
+            TblProduct? product = productService.FindProduct(id);
+            if (product == null) {
+                Console.WriteLine($"Product with id : {id} doesn't exist");
                 goto EnterId;
             }
-            AppDbContext db = new AppDbContext();
-            TblProduct product = db.TblProducts.Where(prod => prod.DeleteFlag == false).First(prod => prod.ProductId == id);
+            printTableData(product);
             Console.Write("Enter New Product Name : ");
-            string newProdName = Console.ReadLine()!;
+            string newProductName = Console.ReadLine()!;
         EnterPrice:
             Console.Write("Enter New Product Price : ");
             bool isDec = decimal.TryParse(Console.ReadLine(), out decimal newPrice);
@@ -100,10 +88,8 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine("Invalid Price Input. Please Enter A Decimal Value.");
                 goto EnterPrice;
             }
-            product.ProductName = newProdName;
-            product.Price = newPrice;
-            int res = db.SaveChanges();
-            Console.WriteLine(res > 0 ? "Product Updated Successfully" : "Failed to Update Product");
+          int result =  productService.UpdateProduct(id, newProductName, newPrice);
+            Console.WriteLine(result > 0 ? "Product updated successfully" : "Failed to update product");
 
         }
 
@@ -117,23 +103,20 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine("Invalid Id. Please Enter An Integer Value.");
                 goto EnterId;
             }
-            
-            if (!isExists(id))
+            ProductService productService = new ProductService();
+            TblProduct? product = productService.FindProduct(id);
+            if (product == null)
             {
-                Console.WriteLine("Product doesn't exist\n");
-                return;
+                Console.WriteLine($"Product with id : {id} doesn't exist");
+                goto EnterId;
             }
-            AppDbContext db = new AppDbContext();
-            TblProduct product = db.TblProducts.Where(prod => prod.DeleteFlag == false).First(prod => prod.ProductId == id);
-            product.DeleteFlag = true;
-            int res = db.SaveChanges();
-            Console.WriteLine(res > 0 ? "Product Deleted Successfully" : "Failed to Delete Product");
-
+            int result = productService.DeleteProduct(id);
+            Console.WriteLine(result > 0 ? "Product deleted successfully" : "Failed to delete product");
         }
 
-        public void Execute()
+        public void Show()
         {
-            Menu:
+        Menu:
             Console.WriteLine("\nThis Is Product Menu");
             Console.WriteLine("--------------------------------");
             Console.WriteLine("\n1. Add a new product");
@@ -151,28 +134,28 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine("Invalid input. Please choose a number between 1 and 6");
                 goto Menu;
             }
-            EnumProdMenu menu = (EnumProdMenu)no;
+            EnumProductMenu menu = (EnumProductMenu)no;
 
             switch (menu)
-            {                   
-                case EnumProdMenu.NewProd:
+            {
+                case EnumProductMenu.NewProduct:
                     Create();
                     break;
-                case EnumProdMenu.ListProd:
+                case EnumProductMenu.ListProduct:
                     Read();
                     break;
-                case EnumProdMenu.EditProd:
+                case EnumProductMenu.EditProduct:
                     Edit();
                     break;
-                case EnumProdMenu.UpdateProd:
+                case EnumProductMenu.UpdateProduct:
                     Update();
                     break;
-                case EnumProdMenu.DeleteProd:
+                case EnumProductMenu.DeleteProduct:
                     Delete();
                     break;
-                case EnumProdMenu.Exit:
+                case EnumProductMenu.Exit:
                     goto End;
-                case EnumProdMenu.None:
+                case EnumProductMenu.None:
                 default:
                     Console.WriteLine("Invalid input. Please choose a number between 1 and 6");
                     goto Menu;
@@ -184,26 +167,19 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
 
         End:
             Console.WriteLine("\nExiting Product Menu");
-
         }
 
-        private bool isExists(int id)
-        {
-            AppDbContext db = new AppDbContext();
-            TblProduct? item = db.TblProducts.Where(prod => prod.DeleteFlag == false).FirstOrDefault(prod => prod.ProductId == id);
-            return item != null;
-        }
-
+        #region Print Table Data With Table Format
         //Print table data for 1 row
         private void printTableData(TblProduct product)
         {
-            
-                Console.WriteLine("{0,-18} {1,-18} {2,-18}",
-                    "Product Id", "Product Name", "Price");
-                Console.WriteLine("{0, -18} {1, -18} {2, -18}",
-                    "-------------", "-------------", "-------------");
-                Console.WriteLine("{0,-18} {1,-18} {2,-18}", product.ProductId, product.ProductName, product.Price);
-                Console.WriteLine();
+
+            Console.WriteLine("{0,-18} {1,-18} {2,-18}",
+                "Product Id", "Product Name", "Price");
+            Console.WriteLine("{0, -18} {1, -18} {2, -18}",
+                "-------------", "-------------", "-------------");
+            Console.WriteLine("{0,-18} {1,-18} {2,-18}", product.ProductId, product.ProductName, product.Price);
+            Console.WriteLine();
         }
         //Print table data for a list of rows
         private void printTableData(List<TblProduct> productList)
@@ -219,18 +195,18 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             Console.WriteLine(new string('-', 53));
             Console.WriteLine();
         }
+        #endregion
 
-        public enum EnumProdMenu
+        public enum EnumProductMenu
         {
             None,
-            NewProd,
-            ListProd,
-            EditProd,
-            UpdateProd,
-            DeleteProd,
+            NewProduct,
+            ListProduct,
+            EditProduct,
+            UpdateProduct,
+            DeleteProduct,
             Exit
         }
-
 
     }
 }

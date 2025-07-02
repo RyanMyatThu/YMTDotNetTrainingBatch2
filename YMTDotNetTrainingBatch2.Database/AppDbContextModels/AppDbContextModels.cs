@@ -21,9 +21,11 @@ public partial class AppDbContextModels : DbContext
 
     public virtual DbSet<TblSalesSummary> TblSalesSummaries { get; set; }
 
+    public virtual DbSet<TblStaffRegister> TblStaffRegisters { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=MiniPOS;User ID=sa;Password=sasa@123;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=POS;User ID=sa;Password=sasa@123;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -61,6 +63,29 @@ public partial class AppDbContextModels : DbContext
             entity.Property(e => e.VoucherId)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<TblStaffRegister>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("Tbl_StaffRegister");
+
+            entity.Property(e => e.Password)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.StaffCode)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("Staff_Code");
+            entity.Property(e => e.StaffEmail)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("Staff_Email");
+            entity.Property(e => e.StaffName)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("Staff_Name");
         });
 
         OnModelCreatingPartial(modelBuilder);

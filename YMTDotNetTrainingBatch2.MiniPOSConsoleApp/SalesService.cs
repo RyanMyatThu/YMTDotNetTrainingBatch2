@@ -14,7 +14,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
         public void Create()
         {
         EnterDate:
-            Console.Write("Enter Date Of Purchase (MM/DD/YYYY) : ");
+            Console.Write("\nEnter Date Of Purchase (MM/DD/YYYY) : ");
             bool isDate = DateTime.TryParse(Console.ReadLine(), out DateTime saleDate);
             if (!isDate)
             {
@@ -48,7 +48,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
 
         public void Read()
         {
-            Console.WriteLine("Obtaining Sales Summary Table From DB");
+            Console.WriteLine("\nObtaining Sales Summary Table From DB");
             Console.WriteLine("-------------------------------------\n");
 
             AppDbContext db = new AppDbContext();
@@ -60,7 +60,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
         public void Edit()
         {
         EnterId:
-            Console.Write("Enter Sales Id To View : ");
+            Console.Write("\nEnter Sales Id To View : ");
             bool isInt = int.TryParse(Console.ReadLine(), out int id);
             if (!isInt) {
                 Console.WriteLine("Invalid Input. Please enter an integer value for id.");
@@ -76,6 +76,52 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             Console.WriteLine();
             printTableData(sale);
 
+        }
+
+        public void Execute()
+        {
+        Menu:
+            Console.WriteLine("\nThis Is Sales Menu");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine("\n1. Add a new sale summary");
+            Console.WriteLine("2. List all sales");
+            Console.WriteLine("3. View a sale summary");
+            Console.WriteLine("4. Exit");
+            Console.WriteLine("--------------------------------");
+
+            Console.Write("\nChoose menu : ");
+            bool isInt = int.TryParse(Console.ReadLine(), out int no);
+            if (!isInt)
+            {
+                Console.WriteLine("Invalid input. Please choose a number between 1 and 4");
+                goto Menu;
+            }
+
+            EnumSaleMenu menu = (EnumSaleMenu)no;
+            switch (menu)
+            {
+                case EnumSaleMenu.CreateSale:
+                    Create();
+                    break;
+                case EnumSaleMenu.ReadSales:
+                    Read();
+                    break;
+                case EnumSaleMenu.ViewSale:
+                    Edit();
+                    break;
+                case EnumSaleMenu.Exit:
+                    goto End;
+                case EnumSaleMenu.None:
+                default:
+                    Console.WriteLine("Invalid input. Please choose a number between 1 and 4");
+                    goto Menu;
+
+            }
+            Console.WriteLine("--------------------------------");
+            goto Menu;
+
+        End:
+            Console.WriteLine("Exiting Sale Menu..");
         }
 
         //Print table data for only 1 row
@@ -102,6 +148,15 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             );
             Console.WriteLine(new string('-',87));
             Console.WriteLine();
+        }
+
+        public enum EnumSaleMenu
+        {
+            None,
+            CreateSale,
+            ReadSales,
+            ViewSale,
+            Exit
         }
     }
 }

@@ -6,6 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ProductService.cs" />
+    <Compile Remove="SalesService.cs" />
+  </ItemGroup>
 	<ItemGroup>
 		
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
@@ -22,5 +27,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\YMTDotNetTrainingBatch2.Database\YMTDotNetTrainingBatch2.Database.csproj" />
+	  <ProjectReference Include="..\YMTDotNetTrainingBatch2.Domain\YMTDotNetTrainingBatch2.Domain.csproj" />
 	</ItemGroup>
 </Project>
