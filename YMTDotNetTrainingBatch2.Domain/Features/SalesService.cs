@@ -32,4 +32,34 @@ public class SalesService
         return result;
     }
 
+    public List<TblSalesDetail> GetSaleDetails()
+    {
+        AppDbContext db = new AppDbContext();
+        List<TblSalesDetail> saleDetails = db.TblSalesDetails.ToList();
+        return saleDetails;
+    }
+
+    public List<TblSalesSummary> GetSaleSummaries()
+    {
+        AppDbContext db = new AppDbContext();
+        List<TblSalesSummary> salesSummaries = db.TblSalesSummaries.ToList();
+        return salesSummaries;
+    }
+
+    public List<TblSalesDetail> FindSaleDetail(int saleId)
+    {
+        AppDbContext db = new AppDbContext();
+        List<TblSalesDetail> saleDetails = db.TblSalesDetails.Where(sale => sale.SaleId == saleId).ToList();
+        return saleDetails;
+
+    }
+
+    public TblSalesSummary? FindSaleSummary(int saleId) {
+        AppDbContext db = new AppDbContext();
+        TblSalesSummary? saleSummary = db.TblSalesSummaries.FirstOrDefault(sale => sale.SaleId == saleId);
+        return saleSummary;
+    }
+
+    
+
 }

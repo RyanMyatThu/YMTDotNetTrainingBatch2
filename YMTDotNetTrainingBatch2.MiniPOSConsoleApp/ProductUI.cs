@@ -18,7 +18,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             Console.WriteLine("-------------------------------\n");
             ProductService productService = new ProductService();
             List<TblProduct> products = productService.GetProducts();
-            printTableData(products);
+            PrintTableData(products);
         }
 
         public void Create()
@@ -58,7 +58,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine($"Product with id : {id} doesn't exist");
                 goto EnterId;
             }
-            printTableData(product);
+            PrintTableData(product);
         }
 
         public void Update()
@@ -77,7 +77,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
                 Console.WriteLine($"Product with id : {id} doesn't exist");
                 goto EnterId;
             }
-            printTableData(product);
+            PrintTableData(product);
             Console.Write("Enter New Product Name : ");
             string newProductName = Console.ReadLine()!;
         EnterPrice:
@@ -171,7 +171,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
 
         #region Print Table Data With Table Format
         //Print table data for 1 row
-        private void printTableData(TblProduct product)
+        private void PrintTableData(TblProduct product)
         {
 
             Console.WriteLine("{0,-18} {1,-18} {2,-18}",
@@ -182,7 +182,7 @@ namespace YMTDotNetTrainingBatch2.MiniPOSConsoleApp
             Console.WriteLine();
         }
         //Print table data for a list of rows
-        private void printTableData(List<TblProduct> productList)
+        private void PrintTableData(List<TblProduct> productList)
         {
             Console.WriteLine("{0,-18} {1,-18} {2,-18}",
                "Product Id", "Product Name", "Price");
