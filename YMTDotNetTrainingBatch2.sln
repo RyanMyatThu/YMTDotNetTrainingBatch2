@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.Domain", "YMTDotNetTrainingBatch2.Domain\YMTDotNetTrainingBatch2.Domain.csproj", "{053FD305-FBA5-4606-A8F5-F228AA3F8DC1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsFormsProject", "WindowsFormsProject", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.WinFormApp1", "WinFormsApp1\YMTDotNetTrainingBatch2.WinFormApp1.csproj", "{D5E5D905-7FD2-47BE-B20D-67198278E551}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBLibrary", "DBLibrary", "{87A3CB25-495D-4A80-9681-8D761D982A22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YMTDotNetTrainingBatch2.WinFormApp.Database", "YMTDotNetTrainingBatch2.WinFormApp.Database\YMTDotNetTrainingBatch2.WinFormApp.Database.csproj", "{D5DEF9D8-0FB3-442A-BD45-6C9A51C6F06D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +41,21 @@ Global
 		{053FD305-FBA5-4606-A8F5-F228AA3F8DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{053FD305-FBA5-4606-A8F5-F228AA3F8DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{053FD305-FBA5-4606-A8F5-F228AA3F8DC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E5D905-7FD2-47BE-B20D-67198278E551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E5D905-7FD2-47BE-B20D-67198278E551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E5D905-7FD2-47BE-B20D-67198278E551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E5D905-7FD2-47BE-B20D-67198278E551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5DEF9D8-0FB3-442A-BD45-6C9A51C6F06D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5DEF9D8-0FB3-442A-BD45-6C9A51C6F06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5DEF9D8-0FB3-442A-BD45-6C9A51C6F06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5DEF9D8-0FB3-442A-BD45-6C9A51C6F06D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5E5D905-7FD2-47BE-B20D-67198278E551} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D5DEF9D8-0FB3-442A-BD45-6C9A51C6F06D} = {87A3CB25-495D-4A80-9681-8D761D982A22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7827A3E8-57B0-4651-9334-F183AE884C2E}

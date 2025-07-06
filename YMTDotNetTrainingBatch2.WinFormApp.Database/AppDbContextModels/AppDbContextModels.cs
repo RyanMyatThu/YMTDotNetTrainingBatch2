@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace YMTDotNetTrainingBatch2.Database.AppDbContextModels;
+namespace YMTDotNetTrainingBatch2.WinFormApp.Database.AppDbContextModels;
 
 public partial class AppDbContextModels : DbContext
 {

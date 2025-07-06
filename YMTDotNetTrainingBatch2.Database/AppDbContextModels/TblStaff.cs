@@ -3,15 +3,21 @@ using System.Collections.Generic;
 
 namespace YMTDotNetTrainingBatch2.Database.AppDbContextModels;
 
-public partial class TblStaffRegister
+public partial class TblStaff
 {
-    public int Id { get; set; }
+    public int StaffId { get; set; }
 
     public string StaffCode { get; set; } = null!;
 
     public string StaffName { get; set; } = null!;
 
-    public string StaffEmail { get; set; } = null!;
+    public string EmailAddress { get; set; } = null!;
 
     public string Password { get; set; } = null!;
+
+    public string Position { get; set; } = null!;
+
+    public string MobileNo { get; set; } = null!;
+
+    public bool IsDelete { get; set; }
 }
