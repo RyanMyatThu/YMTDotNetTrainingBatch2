@@ -45,8 +45,8 @@
             colEdit = new DataGridViewButtonColumn();
             colDelete = new DataGridViewButtonColumn();
             colId = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
             colCode = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvData).BeginInit();
             SuspendLayout();
             // 
@@ -178,7 +178,7 @@
             dgvData.AllowUserToAddRows = false;
             dgvData.AllowUserToDeleteRows = false;
             dgvData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvData.Columns.AddRange(new DataGridViewColumn[] { colEdit, colDelete, colId, colName, colCode });
+            dgvData.Columns.AddRange(new DataGridViewColumn[] { colEdit, colDelete, colId, colCode, colName });
             dgvData.Location = new Point(379, 39);
             dgvData.Name = "dgvData";
             dgvData.ReadOnly = true;
@@ -217,15 +217,6 @@
             colId.Visible = false;
             colId.Width = 150;
             // 
-            // colName
-            // 
-            colName.DataPropertyName = "StaffName";
-            colName.HeaderText = "Staff Name";
-            colName.MinimumWidth = 8;
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            colName.Width = 150;
-            // 
             // colCode
             // 
             colCode.DataPropertyName = "StaffCode";
@@ -234,6 +225,15 @@
             colCode.Name = "colCode";
             colCode.ReadOnly = true;
             colCode.Width = 150;
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "StaffName";
+            colName.HeaderText = "Staff Name";
+            colName.MinimumWidth = 8;
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 150;
             // 
             // FrmStaff
             // 
@@ -281,7 +281,7 @@
         private DataGridViewButtonColumn colEdit;
         private DataGridViewButtonColumn colDelete;
         private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn colCode;
+        private DataGridViewTextBoxColumn colName;
     }
 }
