@@ -255,7 +255,7 @@
             Controls.Add(txtStaffCode);
             Controls.Add(staffCodeLabel);
             Name = "FrmStaff";
-            Text = "Form1";
+            Text = "Database Control";
             Load += FrmStaff_Load;
             ((System.ComponentModel.ISupportInitialize)dgvData).EndInit();
             ResumeLayout(false);
