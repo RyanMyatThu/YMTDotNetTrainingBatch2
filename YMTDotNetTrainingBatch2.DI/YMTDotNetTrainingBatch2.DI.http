@@ -1,0 +1,6 @@
+@YMTDotNetTrainingBatch2.DI_HostAddress = http://localhost:5224
+
+GET {{YMTDotNetTrainingBatch2.DI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

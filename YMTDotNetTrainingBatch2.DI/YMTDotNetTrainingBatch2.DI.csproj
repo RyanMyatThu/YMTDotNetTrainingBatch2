@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	  <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YMTDotNetTrainingBatch2.BL\YMTDotNetTrainingBatch2.BL.csproj" />
+    <ProjectReference Include="..\YMTDotNetTrainingBatch2.DA\YMTDotNetTrainingBatch2.DA.csproj" />
+    <ProjectReference Include="..\YMTDotNetTrainingBatch2.DB\YMTDotNetTrainingBatch2.DB.csproj" />
+  </ItemGroup>
+
+</Project>

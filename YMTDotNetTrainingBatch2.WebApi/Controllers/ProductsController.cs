@@ -9,22 +9,13 @@ namespace YMTDotNetTrainingBatch2.WebApi.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private static List<TblProduct> _products = new List<TblProduct>();
-
-       /* private static List<ProductModel> _products = new List<ProductModel> 
-        {
-            new ProductModel { ProductId = 1, ProductName = "Laptop", Price = 1500.00m, DeleteFlag = false},
-            new ProductModel { ProductId = 2, ProductName = "Mouse", Price = 25.50m, DeleteFlag = false},
-            new ProductModel { ProductId = 3, ProductName = "Keyboard", Price = 45.00m, DeleteFlag = false},
-        }; */
-
         //GET : api/products
         [HttpGet]
         public IActionResult GetAllProducts()
         {   
             ProductService productService = new ProductService();
-            _products = productService.GetProducts();
-            return Ok(_products);
+            List<TblProduct> products = productService.GetProducts();
+            return Ok(products);
         }
         //GET : api/products/1
 
